@@ -26,9 +26,6 @@ def swap_colours(img: Image, hue_from, hue_range, hue_to) -> 'napari.types.Image
         hue_to = hue_to / 360
         hue_range = hue_range / 360
 
-    # print(min((hue_from + 0.05) % 1, (hue_from - 0.05) % 1), max((hue_from + 0.05) % 1, (hue_from - 0.05) % 1))
-    # img_hue[img_hue < min((hue_from + 0.05) % 1, (hue_from - 0.05) % 1)] = hue_to
-    # img_hue[img_hue > max((hue_from + 0.05) % 1, (hue_from - 0.05) % 1)] = hue_to
     hue_upper = hue_val + hue_range
     hue_lower = hue_val - hue_range
 
@@ -50,12 +47,3 @@ def swap_colours(img: Image, hue_from, hue_range, hue_to) -> 'napari.types.Image
 viewer = napari.Viewer()
 viewer.window.add_dock_widget(swap_colours, area='right')
 napari.run()
-# swap_colours()
-
-# im_list = glob.glob('original_figures/*')
-#
-# for im_path in im_list:
-#     image = imageio.imread(im_path)[:,:,:3]
-#     image_swapped = swap_colours(image, (0, 0.05), 0.83)
-#
-#     imageio.imwrite(os.path.join('colour_blind_friendly_figures', os.path.basename(im_path)), image_swapped)
